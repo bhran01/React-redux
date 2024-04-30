@@ -1,24 +1,20 @@
-import logo from './logo.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { addByOne, reset, substractByOne } from './reducer/actions/actionCreator';
 
 function App() {
+  let storeObj=useSelector(storeObject=> storeObject)
+  let dispatch=useDispatch()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1 style={{ textAlign: "center" }}>{storeObj.value}</h1>
+      <div style={{ textAlign: "center" }}>
+        <button onClick={()=>{dispatch(addByOne())}}>+</button>
+        <button onClick={()=>{dispatch(reset())}}>Reset</button>
+        <button onClick={()=>{dispatch(substractByOne())}}>-</button>
+      </div>
+    </>
   );
 }
 
